@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { initialize } from './actions'
-import './app.css'
+import { initialize } from '../actions'
+import { ImageFeed } from './ImageFeed.js'
+import '../styles/app.css'
 
 class App extends Component {
   componentDidMount () {
@@ -13,8 +14,9 @@ class App extends Component {
         <div className="App-header">
           <h1>Welcome to Pictgur</h1>
         </div>
-        <p className="App-intro">
-        </p>
+        <div className="App-body">
+          <ImageFeed />
+        </div>
       </div>
     );
   }
