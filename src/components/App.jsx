@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { initialize } from '../actions'
-import { ImageFeed } from './ImageFeed.js'
-import '../styles/app.css'
+import { ImageFeed } from './ImageFeed.jsx'
 
 class App extends Component {
   componentDidMount () {

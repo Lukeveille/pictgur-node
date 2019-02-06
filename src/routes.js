@@ -1,4 +1,4 @@
-import App from './components/App.js'
+import App from './components/App.jsx'
 import { Route } from 'react-router'
 import React from 'react'
 const routes = (
