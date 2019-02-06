@@ -30,7 +30,7 @@ Test the client by going to [http://localhost:3000/](http://localhost:3000/)
 ### Server
 
 - Basics
-  - The app is bootstraped using `src/server/index.js`
+  - The app is bootstraped using `src/server/server.js`
   - It uses node.js and express
 
 That's it!

@@ -1,5 +1,4 @@
 {
-    
     "appUri": "http://localhost:3000",
     "apiUri": "http://localhost:9095/api",
     "bodyParserLimit": "0.5mb",
