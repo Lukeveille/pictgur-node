@@ -14,4 +14,11 @@ pictureRouter.post('/', (req, res) => {
   });
 });
 
+pictureRouter.get('/:pictureId', (req, res) => {
+  const id = req.params.pictureId;
+  res.status(200).json({
+    message: 'This is for picture #' + id,
+  });
+});
+
 export default pictureRouter;
