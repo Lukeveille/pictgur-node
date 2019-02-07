@@ -9,8 +9,13 @@ pictureRouter.get('/', (req, res) => {
 });
 
 pictureRouter.post('/', (req, res) => {
+  const picture = {
+    src: req.body.src,
+    alt: req.body.alt
+  }
   res.status(201).json({
-    message: 'Pictures post here!',
+    message: 'Posted!',
+    createdPicture: picture
   });
 });
 
