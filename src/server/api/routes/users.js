@@ -14,10 +14,17 @@ userRouter.post('/', (req, res) => {
   });
 });
 
-userRouter.get('/:pictureId', (req, res) => {
-  const id = req.params.pictureId;
+userRouter.get('/:userId', (req, res) => {
+  const id = req.params.userId;
   res.status(200).json({
     message: 'This is for user #' + id,
+  });
+});
+
+userRouter.delete('/:userId', (req, res) => {
+  const id = req.params.userId;
+  res.status(200).json({
+    message: 'This deletes the user :) ' + id,
   });
 });
 
