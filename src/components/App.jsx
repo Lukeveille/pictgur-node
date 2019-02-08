@@ -8,13 +8,18 @@ class App extends Component {
     this.props.initialize()
   }
   render() {
+    const {
+      pictures
+    } = this.props;
     return (
       <div className="App">
         <div className="App-header">
           <h1>Welcome to Pictgur</h1>
         </div>
         <div className="App-body">
-          <ImageFeed />
+          <ImageFeed 
+            pictures={pictures}
+          />
         </div>
       </div>
     );

@@ -1,5 +1,15 @@
 import React from "react"
 
-export const ImageFeed = () => (
-  <div className='image-feed'>Hello World</div>
+export const ImageFeed = ({
+  pictures
+}) => (
+  <div className='image-feed'>
+    {
+      pictures.map((picture) => {
+        return (
+          <img key={picture.id} src={picture.src} alt={picture.alt} />
+        )
+      })
+    }
+  </div>
 )

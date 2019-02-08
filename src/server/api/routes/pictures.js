@@ -5,9 +5,18 @@ import Picture from '../models/picture';
 const pictureRouter = express.Router();
 
 pictureRouter.get('/', (req, res) => {
-  res.status(200).json({
-    message: 'Pictures show here!',
-  });
+  Picture.find()
+  .exec()
+  .then(docs => {
+    console.log(docs);
+    res.status(200).json(docs);
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json({
+      error: err
+    })
+  })
 });
 
 pictureRouter.post('/', (req, res) => {
@@ -29,15 +38,50 @@ pictureRouter.post('/', (req, res) => {
 pictureRouter.get('/:pictureId', (req, res) => {
   const id = req.params.pictureId;
   Picture.findById(id)
-    .exec()
-    .then(doc => {
-      console.log(doc);
-      res.status(200).json(doc);
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json({error: err});
+  .exec()
+  .then(doc => {
+    console.log(doc);
+    res.status(200).json(doc);
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json({error: err});
+  });
+});
+
+pictureRouter.patch('/:pictureId', (req, res) => {
+  const id = req.params.pictureId;
+  const updateOps = {};
+  for (const ops of req.body) {
+    updateOps[ops.propName] = ops.value
+  }
+  Picture.update({ _id: id }, { $set: updateOps })
+  .exec()
+  .then(result => {
+    console.log(result);
+    res.status(200).json(result);
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json({
+      error: err
     });
+  });
+});
+
+pictureRouter.delete('/:pictureId', (req, res) => {
+  const id = req.params.pictureId;
+  Picture.remove({_id: id})
+  .exec()
+  .then(result => {
+    res.status(200).json(result);
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json({
+      error: err
+    });
+  });
 });
 
 export default pictureRouter;
