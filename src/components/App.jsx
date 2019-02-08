@@ -4,7 +4,7 @@ import { initialize } from '../actions'
 import { ImageFeed } from './ImageFeed.jsx'
 
 class App extends Component {
-  fetchPics() {
+  fetchPics(x = 1) {
     fetch('http://localhost:9095/api/pictures', {
       method: 'GET',
       headers: {
@@ -12,14 +12,16 @@ class App extends Component {
       }
     })
     .then((res) => {
-      return res.json()
+      return res.json();
     })
     .then((res) => {
       this.props.initialize(res);
     })
     .catch(err => {
-      console.log(err)
-      this.fetchPics();
+      if (x < 5) {
+        this.fetchPics(x+1);
+        console.log(err + x)
+      }
     })
   }
   componentDidMount() {
