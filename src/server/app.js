@@ -3,12 +3,24 @@ import path from 'path';
 import config from 'config';
 import cors from 'cors';
 import bodyParser from 'body-parser';
+import mongoose from 'mongoose';
 import pictureRouter from './api/routes/pictures';
 import userRouter from './api/routes/users';
+
 const publicRouter = express.Router();
 const apiRouter = express.Router();
-
 const app = express();
+
+mongoose.connect(
+  'mongodb+srv://node-shop:' +
+  process.env.PICTGUR_MONGO_PW +
+  '@cluster0-fvxju.mongodb.net/test?retryWrites=true',
+  {
+    useNewUrlParser: true
+  }
+)
+.catch(err => { console.log(err) });
+
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json({limit: config.bodyParserLimit}));
