@@ -1,5 +1,6 @@
 const INITIALIZE = 'INITIALIZE'
 
-export const initialize = () => ({
-  type: INITIALIZE
+export const initialize = (initialState) => ({
+  type: INITIALIZE,
+  initialState
 })

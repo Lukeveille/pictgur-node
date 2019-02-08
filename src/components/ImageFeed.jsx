@@ -7,7 +7,7 @@ export const ImageFeed = ({
     {
       pictures.map((picture) => {
         return (
-          <img key={picture.id} src={picture.src} alt={picture.alt} />
+          <img key={picture._id} src={picture.src} alt={picture.alt} />
         )
       })
     }

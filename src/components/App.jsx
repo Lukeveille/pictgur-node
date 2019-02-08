@@ -4,8 +4,26 @@ import { initialize } from '../actions'
 import { ImageFeed } from './ImageFeed.jsx'
 
 class App extends Component {
-  componentDidMount () {
-    this.props.initialize()
+  fetchPics() {
+    fetch('http://localhost:9095/api/pictures', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then((res) => {
+      return res.json()
+    })
+    .then((res) => {
+      this.props.initialize(res);
+    })
+    .catch(err => {
+      console.log(err)
+      this.fetchPics();
+    })
+  }
+  componentDidMount() {
+    this.fetchPics();
   }
   render() {
     const {
