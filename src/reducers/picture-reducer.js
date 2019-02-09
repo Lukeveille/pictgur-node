@@ -5,8 +5,6 @@ const initialState = {
 }
 
 export const pictureReducer = (state = initialState, action) => {
-  console.log(action)
-  console.log(state)
   switch (action.type) {
     case 'FETCH_REQUEST':
       return {
