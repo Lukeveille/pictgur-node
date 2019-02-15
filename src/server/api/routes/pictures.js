@@ -6,13 +6,17 @@ const pictureRouter = express.Router();
 
 pictureRouter.get('/', (req, res) => {
   Picture.find()
+  .select('src alt _id')
   .exec()
   .then(docs => {
-    console.log(docs);
-    res.status(200).json(docs);
+    const response = {
+      count: docs.length,
+      pictures: docs
+    };
+
+    res.status(200).json(response);
   })
   .catch(err => {
-    console.log(err);
     res.status(500).json({
       error: err
     })
@@ -26,7 +30,6 @@ pictureRouter.post('/', (req, res) => {
     alt: req.body.alt
   });
   picture.save().then(result => {
-    console.log('result' + result);
   })
   .catch(err => console.log((err)));
   res.status(201).json({
@@ -40,11 +43,9 @@ pictureRouter.get('/:pictureId', (req, res) => {
   Picture.findById(id)
   .exec()
   .then(doc => {
-    console.log(doc);
     res.status(200).json(doc);
   })
   .catch(err => {
-    console.log(err);
     res.status(500).json({error: err});
   });
 });
@@ -58,11 +59,9 @@ pictureRouter.patch('/:pictureId', (req, res) => {
   Picture.update({ _id: id }, { $set: updateOps })
   .exec()
   .then(result => {
-    console.log(result);
     res.status(200).json(result);
   })
   .catch(err => {
-    console.log(err);
     res.status(500).json({
       error: err
     });
@@ -77,7 +76,6 @@ pictureRouter.delete('/:pictureId', (req, res) => {
     res.status(200).json(result);
   })
   .catch(err => {
-    console.log(err);
     res.status(500).json({
       error: err
     });
