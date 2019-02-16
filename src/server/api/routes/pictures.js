@@ -13,7 +13,6 @@ pictureRouter.get('/', (req, res) => {
       count: docs.length,
       pictures: docs
     };
-
     res.status(200).json(response);
   })
   .catch(err => {

@@ -22,7 +22,7 @@ export const fetchPictures = () => {
     return fetch("http://localhost:9095/api/pictures")
     .then(data => data.json())
     .then(data => {
-      dispatch(fetchPicturesSuccess(data))
+      dispatch(fetchPicturesSuccess(data.pictures))
     })
     .catch(err => dispatch(fetchPicturesError(err)));
   }

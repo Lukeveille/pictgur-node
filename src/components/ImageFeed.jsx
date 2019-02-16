@@ -4,6 +4,7 @@ export const ImageFeed = ({
   pictures
 }) => (
   <div className='image-feed'>
+  {console.log(pictures)}
     {
       pictures.map((picture) => {
         return (
