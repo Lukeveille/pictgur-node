@@ -21,6 +21,8 @@ mongoose.connect(
 )
 .catch(err => { console.log(err) });
 
+mongoose.Promise = global.Promise;
+
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json({limit: config.bodyParserLimit}));
