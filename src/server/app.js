@@ -33,7 +33,7 @@ app.use('/', publicRouter);
 app.use('/api', apiRouter);
 
 // API routes
-apiRouter.use('/users', userRouter);
+apiRouter.use('/user', userRouter);
 apiRouter.use('/pictures', pictureRouter);
 apiRouter.get('/health', (req, res) => {
   res.status(200).json({

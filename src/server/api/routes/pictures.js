@@ -97,8 +97,7 @@ pictureRouter.patch('/:pictureId', (req, res) => {
 });
 
 pictureRouter.delete('/:pictureId', (req, res) => {
-  const id = req.params.pictureId;
-  Picture.remove({_id: id})
+  Picture.remove({_id: req.params.pictureId})
   .exec()
   .then(result => {
     res.status(200).json({
