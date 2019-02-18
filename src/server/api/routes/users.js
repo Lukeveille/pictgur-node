@@ -1,30 +1,14 @@
 import express from 'express';
+import mongoose from 'mongoose';
+import User from '../models/user';
 
 const userRouter = express.Router();
 
-userRouter.get('/', (req, res) => {
-  res.status(200).json({
-    message: 'Users show here!',
-  });
-});
-
-userRouter.post('/', (req, res) => {
-  res.status(201).json({
-    message: 'Users post here!',
-  });
-});
-
-userRouter.get('/:userId', (req, res) => {
-  const id = req.params.userId;
-  res.status(200).json({
-    message: 'This is for user #' + id,
-  });
-});
-
-userRouter.delete('/:userId', (req, res) => {
-  const id = req.params.userId;
-  res.status(200).json({
-    message: 'This deletes the user :) ' + id,
+userRouter.post('/signup', (req, res) => {
+  const user = new User({
+    _id: new mongoose.Types.ObjectId(),
+    email: req.body.email,
+    password: req.body.email
   });
 });
 
