@@ -11,7 +11,6 @@ class App extends Component {
     const {
       pictureReducer
     } = this.props;
-    // console.log(pictureReducer)
     return (
       <div className="App">
         <div className="App-header">
