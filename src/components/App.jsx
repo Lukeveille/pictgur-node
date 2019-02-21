@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchPictures } from '../actions'
-import { ImageFeed } from './ImageFeed.jsx'
+import ImageFeed from './ImageFeed'
 
 class App extends Component {
   componentDidMount() {
@@ -18,7 +18,7 @@ class App extends Component {
         </div>
         <div className="App-body">
           <ImageFeed 
-            pictures={pictureReducer.payload}
+            payload={pictureReducer.payload}
           />
         </div>
       </div>
@@ -26,8 +26,7 @@ class App extends Component {
   }
 }
 
-function mapStateToProps (state) {
-  return state
-}
+const mapStateToProps = state => (state);
+const mapDispatchToProps = { fetchPictures };
 
-export default connect(mapStateToProps, { fetchPictures })(App)
+export default connect(mapStateToProps, mapDispatchToProps)(App)

@@ -17,7 +17,7 @@ export const pictureReducer = (state = initialState, action) => {
     case 'FETCH_SUCCESS': 
       return {
         ...state,
-        payload: action.pictures,
+        payload: action.pictures.data,
         isFetching: false,
         isError: false,
         suc: 'suc'

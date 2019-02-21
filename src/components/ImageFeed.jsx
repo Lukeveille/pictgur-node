@@ -1,18 +1,23 @@
 import React from "react"
+import { connect } from "react-redux";
 
-export const ImageFeed = ({
-  pictures
+let ImageFeed = ({
+  payload
 }) => (
   <div className='image-feed'>
-  {console.log(pictures)}
+  {console.log(payload)}
     {
-      pictures.map((picture) => {
+      payload.map((picture) => {
         return (
-          <a key={picture._id} href={"/" + picture._id}>
-            <img src={picture.src} alt={picture.alt} />
+          <a key={picture.id} href={"/" + picture.id}>
+            <img src={picture.link} alt={picture.name} />
           </a>
         )
       })
     }
   </div>
 )
+
+const mapStateToProps = state => (state);
+
+export default connect(mapStateToProps, null)(ImageFeed);

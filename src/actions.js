@@ -19,10 +19,15 @@ const fetchPicturesError = error => ({
 export const fetchPictures = () => {
   store().dispatch(fetchPicturesRequest());
   return (dispatch, getState) => {
-    return fetch("http://localhost:9095/api/pictures")
+    return fetch('https://api.imgur.com/3/account/Lukeveille/images/',{
+      headers: {
+        Accept: 'application/json',
+        Authorization: 'Bearer ' + process.env.REACT_APP_IMGUR_ACCESS_TOKEN
+      }
+    })
     .then(data => data.json())
     .then(data => {
-      dispatch(fetchPicturesSuccess(data.pictures))
+      dispatch(fetchPicturesSuccess(data))
     })
     .catch(err => dispatch(fetchPicturesError(err)));
   }
