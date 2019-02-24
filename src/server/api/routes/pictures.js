@@ -11,10 +11,10 @@ pictureRouter.get('/', (req, res) => {
   .then(docs => {
     const response = {
       count: docs.length,
-      pictures: docs.map(doc => ({
-        src: doc.src,
-        alt: doc.alt,
-        _id: doc._id,
+      data: docs.map(doc => ({
+        link: doc.src,
+        name: doc.alt,
+        id: doc._id,
         request: {
           type: 'GET',
           url: 'http://localhost:9095/api/pictures/' + doc._id

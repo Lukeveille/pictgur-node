@@ -9,9 +9,16 @@ function fetchGallery() {
   return axios({
     method: 'GET',
     headers: header,
-    url: 'https://api.imgur.com/3/account/Lukeveille/images/'
+    url: 'https://api.imgur.com/3/account/me/images'
   });
 };
+
+// function fetchGallery() {
+//   return axios({
+//     method: 'GET',
+//     url: 'http://localhost:9095/api/pictures'
+//   });
+// };
 
 function* workerSaga() {
   try {

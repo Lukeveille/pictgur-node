@@ -1,9 +1,9 @@
 import React from "react"
 import { connect } from "react-redux";
 
-let ImageFeed = ({ payload }) => (
+let ImageFeed = ({ payload, fetching, error }) => (
   <div className='image-feed'>
-    {payload.map((picture) => {
+    {fetching? <h3>Loading...</h3> : error? <h3>ERROR</h3> : payload.map((picture) => {
       return (
         <a key={picture.id} href={"/" + picture.id}>
           <img src={picture.link} alt={picture.name} />
