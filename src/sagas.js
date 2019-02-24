@@ -1,26 +1,30 @@
-import { put, takeLatest, all } from 'redux-saga/effects';
-import { push } from 'react-router-redux';
+import { put, takeLatest, call } from 'redux-saga/effects';
+import axios from 'axios';
 
-function * fetchGallery(actionObj) {
-  const json = yield fetch('https://api.imgur.com/3/account/Lukeveille/images/',{
-    headers: {
-      Accept: 'application/json',
-      Authorization: 'Bearer ' + process.env.REACT_APP_IMGUR_ACCESS_TOKEN
-    }
+function fetchGallery() {
+  const header = {
+    Accept: 'application/json',
+    Authorization: 'Bearer ' + process.env.REACT_APP_IMGUR_ACCESS_TOKEN
+  }
+  return axios({
+    method: 'GET',
+    headers: header,
+    url: 'https://api.imgur.com/3/account/Lukeveille/images/'
   });
-
-  yield [
-    put({ type: 'DATA_RECEIVED', json: json }),
-    put(push('/city' + json))
-  ];
 };
 
-function * actionWatcher() {
-  yield takeLatest('GET_GALLERY', fetchGallery);
+function* workerSaga() {
+  try {
+    const response = yield call(fetchGallery);
+    const data = response.data.data;
+
+    yield put({ type: 'API_CALL_SUCCESS', data });
+
+  } catch (error) {
+    yield put({ type: 'API_CALL_FAILURE', error });
+  };
 };
 
-export default function * rootSaga() {
-  yield all([
-    actionWatcher(),
-  ]);
+export function* actionWatcher() {
+  yield takeLatest('API_CALL_REQUEST', workerSaga);
 };

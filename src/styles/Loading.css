@@ -1,0 +1,14 @@
+.Loading-icon {
+  animation: Loading-icon-spin infinite 5s linear;
+  height: 8vmin;
+  pointer-events: none;
+}
+
+@keyframes Loading-icon-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

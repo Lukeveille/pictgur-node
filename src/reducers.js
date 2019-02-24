@@ -1,16 +1,17 @@
-import { combineReducers } from 'redux'
-import { routerReducer } from 'react-router-redux'
+const initialState = {
+  fetching: false,
+  data: null,
+  error: null
+};
 
-export default combineReducers({
-  router: routerReducer,
-  gallery: state => (state = [])
-  // pictures: (state, action) => {
-  //   switch (action.type) {
-  //     case 'GET_GALLERY':
-  //       return { ...state, loading: true, callDone: true };
-  //     case 'DATA_RECEIVED':
-  //       return { ...state, payload: action.pictures.data, loading: false};
-  //     default: return state;
-  //   }
-  // }
-})
+export const reducers = (state = initialState, action) => {
+  switch (action.type) {
+    case 'API_CALL_REQUEST':
+      return { ...state, fetching: true, error: null };
+    case 'API_CALL_SUCCESS':
+      return { ...state, fetching: false, data: action.data };
+    case 'API_CALL_FAILURE':
+      return { ...state, fetching: false, data: null, error: action.error };
+    default: return state;
+  }
+}

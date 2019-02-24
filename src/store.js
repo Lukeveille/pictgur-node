@@ -1,14 +1,16 @@
 import { applyMiddleware, compose, createStore } from 'redux'
-import thunk from 'redux-thunk'
+import createSagaMiddleware from 'redux-saga'
 import { routerMiddleware } from 'react-router-redux'
-import reducers from './reducers'
+import { reducers } from './reducers'
+import { actionWatcher } from './sagas'
 
 export default function configureStore (history) {
+  const sagaMiddleware = createSagaMiddleware()
   let middleware = applyMiddleware(
-    thunk,
+    sagaMiddleware,
     routerMiddleware(history)
   )
-  /* Incorporate Redux Dev Tools */
+  
   if (process.env.NODE_ENV !== 'production') {
     const devToolsExtension = window.devToolsExtension
     if (typeof devToolsExtension === 'function') {
@@ -17,5 +19,7 @@ export default function configureStore (history) {
   }
 
   const store = createStore(reducers, middleware)
+  sagaMiddleware.run(actionWatcher)
+
   return store
 }

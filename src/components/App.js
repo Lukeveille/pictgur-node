@@ -1,32 +1,42 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
-// import { fetchPictures } from '../actions'
-// import ImageFeed from './ImageFeed'
+import ImageFeed from './ImageFeed'
 
-class App extends Component {
-  // componentDidMount() {
-  //   this.props.fetchPictures();
-  // }
-  render() {
-    // const {
-    //   pictures
-    // } = this.props;
-    return (
-      <div className="App">
-        <div className="App-header">
-          <h1>Welcome to Pictgur</h1>
-        </div>
-        <div className="App-body">
-          {/* <ImageFeed 
-            payload={pictures.payload}
-          /> */}
-        </div>
-      </div>
-    );
+class App extends React.Component {
+  componentDidMount() {
+    this.props.requestGallery()
   }
+  render() {
+  const { fetching, data, error } = this.props;
+  return (
+  <div className="App">
+    <div className="App-header">
+      <h1>Welcome to Pictgur</h1>
+    </div>
+    <div className="App-body">
+      <ImageFeed 
+        payload={data? data : []}
+        fetching={fetching}
+        error={error}
+      />
+    </div>
+  </div>
+  )
+};
 }
 
-const mapStateToProps = state => (state);
-// const mapDispatchToProps = { fetchPictures };
+const mapStateToProps = state => {
+  return {
+    fetching: state.fetching,
+    data: state.data,
+    error: state.error
+  };
+};
 
-export default connect(mapStateToProps, null)(App)
+const mapDispatchToProps = dispatch => {
+  return {
+    requestGallery: () => dispatch({ type: "API_CALL_REQUEST" })
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)

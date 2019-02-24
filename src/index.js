@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import createHistory from 'history/createBrowserHistory'
 import { ConnectedRouter } from 'react-router-redux'
+import * as serviceWorker from './serviceWorker';
 import configureStore from './store'
-import routes from './routes'
+import App from './components/App'
 import './styles/index.css'
 
 const history = createHistory()
@@ -13,8 +14,10 @@ const rootElement = document.getElementById('root')
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
-        {routes}
+        <App />
     </ConnectedRouter>
   </Provider>,
   rootElement
 )
+
+serviceWorker.unregister();
