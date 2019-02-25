@@ -2,6 +2,7 @@ import { put, takeLatest, call } from 'redux-saga/effects';
 import axios from 'axios';
 
 function fetchGallery() {
+  const section = 'hot'
   const header = {
     Accept: 'application/json',
     Authorization: 'Bearer ' + process.env.REACT_APP_IMGUR_ACCESS_TOKEN
@@ -9,7 +10,7 @@ function fetchGallery() {
   return axios({
     method: 'GET',
     headers: header,
-    url: 'https://api.imgur.com/3/account/me/images'
+    url: 'https://api.imgur.com/3/gallery/' + section
   });
 };
 

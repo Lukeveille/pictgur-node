@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import ImageFeed from './ImageFeed'
+import Gallery from './Gallery'
 
 class App extends React.Component {
   componentDidMount() {
@@ -14,7 +14,7 @@ class App extends React.Component {
       <h1>Welcome to Pictgur</h1>
     </div>
     <div className="App-body">
-      <ImageFeed 
+      <Gallery 
         payload={data? data : []}
         fetching={fetching}
         error={error}

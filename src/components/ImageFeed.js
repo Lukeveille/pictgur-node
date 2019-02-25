@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 let ImageFeed = ({ payload, fetching, error }) => (
   <div className='image-feed'>
-    {fetching? <h3>Loading...</h3> : error? <h3>ERROR</h3> : payload.map((picture) => {
+    {fetching? <h3>Loading...</h3> : error? <h3>{error.message}</h3> : payload.map((picture) => {
       return (
         <a key={picture.id} href={"/" + picture.id}>
           <img src={picture.link} alt={picture.name} />
