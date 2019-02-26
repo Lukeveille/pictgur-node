@@ -9,8 +9,7 @@ let Gallery = ({ payload, fetching, error }) => (
       return (
         <GalleryPreview 
           key={gallery.id}
-          images={gallery.images? gallery.images : [gallery]}
-          title={gallery.title}
+          gallery={gallery? gallery : null}
         />
       )
     })}
