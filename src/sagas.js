@@ -1,4 +1,4 @@
-import { put, takeLatest, call } from 'redux-saga/effects';
+import { select, put, takeLatest, call } from 'redux-saga/effects';
 import axios from 'axios';
 
 function fetchGallery() {
@@ -21,12 +21,16 @@ function fetchGallery() {
 //   });
 // };
 
+export const getState = state => state.data? state.data : []
+
 function* workerSaga() {
   try {
     const response = yield call(fetchGallery);
     const data = response.data.data;
 
     yield put({ type: 'API_CALL_SUCCESS', data });
+
+    console.log(select(getState))
 
   } catch (error) {
     yield put({ type: 'API_CALL_FAILURE', error });

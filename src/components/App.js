@@ -7,7 +7,7 @@ class App extends React.Component {
     this.props.requestGallery()
   }
   render() {
-  const { fetching, data, error } = this.props;
+  // const { fetching, data, error } = this.props;
   return (
   <div className="App">
     <div className="App-header">
@@ -15,9 +15,9 @@ class App extends React.Component {
     </div>
     <div className="App-body">
       <Gallery 
-        payload={data? data : []}
-        fetching={fetching}
-        error={error}
+        // payload={data? data : []}
+        // fetching={fetching}
+        // error={error}
       />
     </div>
   </div>
@@ -25,18 +25,10 @@ class App extends React.Component {
 };
 }
 
-const mapStateToProps = state => {
-  return {
-    fetching: state.fetching,
-    data: state.data,
-    error: state.error
-  };
-};
+const mapStateToProps = state => (state);
 
-const mapDispatchToProps = dispatch => {
-  return {
-    requestGallery: () => dispatch({ type: "API_CALL_REQUEST" })
-  };
-};
+const mapDispatchToProps = dispatch => ({
+  requestGallery: () => dispatch({ type: "API_CALL_REQUEST" })
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

@@ -2,11 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 const GalleryPreview = ({gallery}) => {
-  const coverImage = gallery.images? gallery.images[0] : [gallery]
+  const coverImage = gallery.images? gallery.images[0] : gallery;
 
   return (
-    <div>
+    <div className="gallery-preview">
       <span>{gallery.images? gallery.images.length > 1? gallery.images.length : null : null}</span>
+      <span>{gallery.title}</span>
       <div>
         {coverImage.type === "video/mp4"?
           <video autoPlay={true} loop={true} muted={true} src={coverImage? coverImage.link : null} alt={gallery.title} />
