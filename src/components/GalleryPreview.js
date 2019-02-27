@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-const GalleryPreview = ({gallery}) => {
+const GalleryPreview = ({gallery, autoplay}) => {
   const coverImage = gallery.images? gallery.images[0] : gallery;
 
   return (
@@ -10,7 +10,7 @@ const GalleryPreview = ({gallery}) => {
       <span>{gallery.title}</span>
       <div>
         {coverImage.type === "video/mp4"?
-          <video autoPlay={true} loop={true} muted={true} src={coverImage? coverImage.link : null} alt={gallery.title} />
+          <video autoPlay={autoplay} loop={true} muted={true} src={coverImage? coverImage.link : null} alt={gallery.title} />
           :
           <img src={coverImage? coverImage.link : null} alt={gallery.title}/>
         }
@@ -23,6 +23,9 @@ const GalleryPreview = ({gallery}) => {
   )
 }
 
-const mapStateToProps = state => (state)
+const mapStateToProps = state => ({
+  ...state,
+  autoplay: state.autoplay
+});
 
 export default connect(mapStateToProps, null)(GalleryPreview)

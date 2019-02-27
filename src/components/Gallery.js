@@ -4,7 +4,6 @@ import GalleryPreview from './GalleryPreview'
 
 let Gallery = ({ data, fetching, error }) => (
   <div className='image-feed'>
-    {console.log(data)}
     {fetching? <h3>Loading...</h3> : error? <h3>{error.message}</h3> : data.map((gallery) => {
       return (
         <GalleryPreview 

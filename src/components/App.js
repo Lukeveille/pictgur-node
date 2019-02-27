@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Gallery from './Gallery'
+import DisplaySettings from './DisplaySettings'
 
 class App extends React.Component {
   componentDidMount() {
@@ -14,11 +15,8 @@ class App extends React.Component {
       <h1>Welcome to Pictgur</h1>
     </div>
     <div className="App-body">
-      <Gallery 
-        // payload={data? data : []}
-        // fetching={fetching}
-        // error={error}
-      />
+      <DisplaySettings />
+      <Gallery />
     </div>
   </div>
   )
