@@ -2,13 +2,13 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Gallery from './Gallery'
 import DisplaySettings from './DisplaySettings'
+import { apiRequest } from '../actions';
 
 class App extends React.Component {
   componentDidMount() {
     this.props.requestGallery()
   }
   render() {
-  // const { fetching, data, error } = this.props;
   return (
   <div className="App">
     <div className="App-header">
@@ -26,7 +26,7 @@ class App extends React.Component {
 const mapStateToProps = state => (state);
 
 const mapDispatchToProps = dispatch => ({
-  requestGallery: () => dispatch({ type: "API_CALL_REQUEST" })
+  requestGallery: () => dispatch(apiRequest())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

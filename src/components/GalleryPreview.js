@@ -10,9 +10,9 @@ const GalleryPreview = ({gallery, autoplay}) => {
       <span>{gallery.title}</span>
       <div>
         {coverImage.type === "video/mp4"?
-          <video autoPlay={autoplay} loop={true} muted={true} src={coverImage? coverImage.link : null} alt={gallery.title} />
+          <video className="image" autoPlay={autoplay} loop={true} muted={true} src={coverImage? coverImage.link : null} alt={gallery.title} />
           :
-          <img src={coverImage? coverImage.link : null} alt={gallery.title}/>
+          <img className="image" src={coverImage? coverImage.link : null} alt={gallery.title}/>
         }
       </div>
       up: {gallery.ups}

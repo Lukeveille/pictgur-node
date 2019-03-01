@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { setAutoplay, setSection, setSort } from '../actions';
 
 const DisplaySettings = ({
   section,
@@ -35,18 +36,9 @@ const mapStateToProps = state => ({
   autoplay: state.autoplay
 })
 const mapDispatchToProps = dispatch => ({
-  setAutoplay: autoplay => dispatch({ 
-    type: 'SET_AUTOPLAY',
-    autoplay
-  }),
-  setSection: section => dispatch({
-    type: 'SET_SECTION',
-    section
-  }),
-  setSort: sort => dispatch({
-    type: 'SET_SORT',
-    sort
-  })
+  setAutoplay: autoplay => dispatch(setAutoplay(autoplay)),
+  setSection: section => dispatch(setSection(section)),
+  setSort: sort => dispatch(setSort(sort))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DisplaySettings)
