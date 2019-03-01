@@ -13,7 +13,7 @@ function fetchGallery(fetch) {
   });
 };
 
-function* workerSaga() {
+export function* workerSaga() {
   try {
     const section = yield select(state => state.section)
     const sort = yield select(state => state.sort)
@@ -21,8 +21,6 @@ function* workerSaga() {
     const response = yield call(() => fetchGallery({section, sort}));
 
     const data = response.data.data;
-
-    console.log(data)
 
     yield put({ type: 'API_CALL_SUCCESS', data });
 
