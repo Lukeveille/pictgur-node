@@ -31,5 +31,5 @@ export const reducers = (state = initialState, action) => {
     case SET_AUTOPLAY:
       return { ...state, autoplay: action.autoplay };
     default: return state;
-  };
+  }
 };
