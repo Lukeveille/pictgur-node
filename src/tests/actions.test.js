@@ -9,7 +9,6 @@ describe('actions', () => {
     };
     expect(actions.setAutoplay(autoplay)).toEqual(expectedAction);
   });
-
   it('should create an action to set which section displays', () => {
     const section = 'top';
     const expectedAction = {
@@ -18,7 +17,6 @@ describe('actions', () => {
     };
     expect(actions.setSection(section)).toEqual(expectedAction);
   });
-
   it('should create an action to set how the gallery sorts', () => {
     const sort = 'top';
     const expectedAction = {
@@ -27,14 +25,12 @@ describe('actions', () => {
     };
     expect(actions.setSort(sort)).toEqual(expectedAction);
   });
-  
   it('should create an action to make an API call', () => {
     const expectedAction = {
       type: 'API_CALL_REQUEST',
     };
     expect(actions.apiRequest()).toEqual(expectedAction);
   });
-
   it('should create an action to return the result of an API call', () => {
     const data = [];
     const expectedAction = {
@@ -43,7 +39,6 @@ describe('actions', () => {
     };
     expect(actions.apiSuccess(data)).toEqual(expectedAction);
   });
-
   it('should create an action to return an error when an API call fails', () => {
     const error = { message: 'error' };
     const expectedAction = {
