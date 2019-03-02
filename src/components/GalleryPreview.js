@@ -15,9 +15,9 @@ const GalleryPreview = ({gallery, autoplay}) => {
           <img className="image" src={coverImage? coverImage.link : null} alt={gallery.title}/>
         }
       </div>
-      up: {gallery.ups}
-      down: {gallery.downs}
-      comments: {gallery.comment_count}
+      up: {gallery.ups} | 
+      down: {gallery.downs} | 
+      comments: {gallery.comment_count} | 
       views: {gallery.views}
     </div>
   )

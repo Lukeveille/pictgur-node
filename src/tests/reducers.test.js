@@ -1,4 +1,5 @@
 import { reducers, initialState } from '../reducers';
+import * as type from '../actionTypes';
 
 describe('All reducers', () => {
   it('should return the initial state', () => {
@@ -6,7 +7,7 @@ describe('All reducers', () => {
   });
   it('should begin fetching API call', () => {
     expect(reducers(initialState, {
-      type: 'API_CALL_REQUEST'
+      type: type.API_CALL_REQUEST
     })).toEqual({
       ...initialState,
       fetching: true,
@@ -15,7 +16,7 @@ describe('All reducers', () => {
   });
   it('should return a successful API call', () => {
     expect(reducers(initialState, {
-      type: 'API_CALL_SUCCESS',
+      type: type.API_CALL_SUCCESS,
       data: 'success'
     })).toEqual({
       ...initialState,
@@ -25,7 +26,7 @@ describe('All reducers', () => {
   });
   it('should return an error with no data if an API call fails', () => {
     expect(reducers(initialState, {
-      type: 'API_CALL_FAILURE',
+      type: type.API_CALL_FAILURE,
       error: 'error'
     })).toEqual({
       ...initialState,
@@ -36,7 +37,7 @@ describe('All reducers', () => {
   });
   it('can set the section being viewed', () => {
     expect(reducers(initialState, {
-      type: 'SET_SECTION',
+      type: type.SET_SECTION,
       section: 'top'
     })).toEqual({
       ...initialState,
@@ -45,7 +46,7 @@ describe('All reducers', () => {
   });
   it('can set the sorting options', () => {
     expect(reducers(initialState, {
-      type: 'SET_SORT',
+      type: type.SET_SORT,
       sort: 'top'
     })).toEqual({
       ...initialState,
@@ -54,7 +55,7 @@ describe('All reducers', () => {
   });
   it('toggle the autoplay setting', () => {
     expect(reducers(initialState, {
-      type: 'SET_AUTOPLAY',
+      type: type.SET_AUTOPLAY,
       autoplay: false
     })).toEqual({
       ...initialState,

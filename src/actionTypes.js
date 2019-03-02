@@ -1,0 +1,6 @@
+export const SET_AUTOPLAY = 'SET_AUTOPLAY';
+export const SET_SECTION = 'SET_SECTION';
+export const SET_SORT = 'SET_SORT';
+export const API_CALL_REQUEST = 'API_CALL_REQUEST';
+export const API_CALL_SUCCESS = 'API_CALL_SUCCESS';
+export const API_CALL_FAILURE = 'API_CALL_FAILURE';

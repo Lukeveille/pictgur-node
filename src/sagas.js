@@ -1,7 +1,8 @@
+import { API_CALL_REQUEST, SET_SECTION, SET_SORT } from './actionTypes';
 import { select, put, takeLatest, call } from 'redux-saga/effects';
 import axios from 'axios';
 
-import { apiSuccess, apiFailure } from './actions'
+import { apiSuccess, apiFailure } from './actions';
 
 function fetchGallery(fetch) {
   const header = {
@@ -17,8 +18,8 @@ function fetchGallery(fetch) {
 
 export function* workerSaga() {
   try {
-    const section = yield select(state => state.section)
-    const sort = yield select(state => state.sort)
+    const section = yield select(state => state.section);
+    const sort = yield select(state => state.sort);
 
     const response = yield call(() => fetchGallery({section, sort}));
 
@@ -32,7 +33,7 @@ export function* workerSaga() {
 };
 
 export function* actionWatcher() {
-  yield takeLatest('API_CALL_REQUEST', workerSaga);
-  yield takeLatest('SET_SECTION', workerSaga);
-  yield takeLatest('SET_SORT', workerSaga);
+  yield takeLatest(API_CALL_REQUEST, workerSaga);
+  yield takeLatest(SET_SECTION, workerSaga);
+  yield takeLatest(SET_SORT, workerSaga);
 };
