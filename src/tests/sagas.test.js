@@ -25,6 +25,7 @@ describe('the workerSaga generator', () => {
   const gen = workerSaga();
   const section = select(sectionSelect);
   const sort = select(sortSelect);
+  const data = {data: {data: []}}
 
   it('selects the current section setting', () => {
     expect(gen.next().value).toEqual(section);
@@ -35,14 +36,23 @@ describe('the workerSaga generator', () => {
   it('fetches based on gallery settings', () => {
     expect(gen.next(sort).value).toEqual(call(fetchGallery, { section, sort }));
   });
-  it('returns failure', () => {
-    expect(gen.next().value).toEqual(put(apiFailure(TypeError("Cannot read property 'data' of undefined"))));
+  it('returns success', () => {
+    expect(gen.next(data).value).toEqual(put(apiSuccess(data.data.data)));
   });
-  // it('returns success', () => {
-  //   expect(gen.next().value).toEqual(put(apiSuccess(undefined)));
-  // });
   it('is done', () => {
     expect(gen.next().value).toBeUndefined();
     expect(gen.next().done).toBeTruthy();
+  });
+
+  const failGen = workerSaga();
+  it('returns failure', () => {
+    failGen.next()
+    failGen.next()
+    failGen.next()
+    expect(failGen.next().value).toEqual(put(apiFailure(TypeError("Cannot read property 'data' of undefined"))));
+  });
+  it('is done', () => {
+    expect(failGen.next().value).toBeUndefined();
+    expect(failGen.next().done).toBeTruthy();
   });
 });
