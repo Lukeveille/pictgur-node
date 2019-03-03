@@ -1,10 +1,11 @@
 import { API_CALL_REQUEST, SET_SECTION, SET_SORT } from './actionTypes';
 import { select, put, takeLatest, call } from 'redux-saga/effects';
 import axios from 'axios';
+import { sectionSelect, sortSelect } from './selectors';
 
 import { apiSuccess, apiFailure } from './actions';
 
-function fetchGallery(fetch) {
+export function fetchGallery(fetch) {
   const header = {
     Accept: 'application/json',
     Authorization: 'Bearer ' + process.env.REACT_APP_IMGUR_ACCESS_TOKEN
@@ -18,8 +19,8 @@ function fetchGallery(fetch) {
 
 export function* workerSaga() {
   try {
-    const section = yield select(state => state.section);
-    const sort = yield select(state => state.sort);
+    const section = yield select(sectionSelect);
+    const sort = yield select(sortSelect);
 
     const response = yield call(() => fetchGallery({section, sort}));
 
