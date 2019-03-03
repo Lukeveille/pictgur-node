@@ -2,7 +2,6 @@ import { API_CALL_REQUEST, SET_SECTION, SET_SORT } from './actionTypes';
 import { select, put, takeLatest, call } from 'redux-saga/effects';
 import axios from 'axios';
 import { sectionSelect, sortSelect } from './selectors';
-
 import { apiSuccess, apiFailure } from './actions';
 
 export function fetchGallery(fetch) {
@@ -22,7 +21,7 @@ export function* workerSaga() {
     const section = yield select(sectionSelect);
     const sort = yield select(sortSelect);
 
-    const response = yield call(() => fetchGallery({section, sort}));
+    const response = yield call(fetchGallery,{section, sort});
 
     const data = response.data.data;
 

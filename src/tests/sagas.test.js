@@ -1,39 +1,48 @@
 import { API_CALL_REQUEST, SET_SECTION, SET_SORT } from '../actionTypes';
 import { workerSaga, actionWatcher, fetchGallery } from '../sagas.js'
-// import cloneableGenerator from 'redux-saga';
 import { select, takeLatest, call, put } from 'redux-saga/effects';
 import { sectionSelect, sortSelect } from '../selectors';
 import { apiSuccess, apiFailure } from '../actions';
 
 describe('the actionWatcher generator', () => {
-  const testSaga = actionWatcher();
+  const gen = actionWatcher();
   it('make an API call', () => {
-    expect(testSaga.next().value).toEqual(takeLatest(API_CALL_REQUEST, workerSaga));
+    expect(gen.next().value).toEqual(takeLatest(API_CALL_REQUEST, workerSaga));
   });
   it('update the section being called', () => {
-    expect(testSaga.next().value).toEqual(takeLatest(SET_SECTION, workerSaga));
+    expect(gen.next().value).toEqual(takeLatest(SET_SECTION, workerSaga));
   });
   it('update the sorting options', () => {
-    expect(testSaga.next().value).toEqual(takeLatest(SET_SORT, workerSaga));
+    expect(gen.next().value).toEqual(takeLatest(SET_SORT, workerSaga));
   });
   it('is done', () => {
-    expect(testSaga.next().done).toEqual(true);
+    expect(gen.next().value).toBeUndefined();
+    expect(gen.next().done).toBeTruthy();
   });
 });
+
 describe('the workerSaga generator', () => {
-  const testSaga = workerSaga();
+  const gen = workerSaga();
   const section = select(sectionSelect);
   const sort = select(sortSelect);
+
   it('selects the current section setting', () => {
-    expect(testSaga.next().value).toEqual(section);
+    expect(gen.next().value).toEqual(section);
   });
   it('selects the current sort setting', () => {
-    expect(testSaga.next().value).toEqual(sort);
+    expect(gen.next(section).value).toEqual(sort);
   });
   it('fetches based on gallery settings', () => {
-    expect(testSaga.next().value).toEqual(call(() => fetchGallery({section, sort})));
+    expect(gen.next(sort).value).toEqual(call(fetchGallery, { section, sort }));
   });
-  it('fetches based on gallery settings', () => {
-    expect(testSaga.next().value).toEqual(put(apiSuccess()));
+  it('returns failure', () => {
+    expect(gen.next().value).toEqual(put(apiFailure(TypeError("Cannot read property 'data' of undefined"))));
+  });
+  // it('returns success', () => {
+  //   expect(gen.next().value).toEqual(put(apiSuccess(undefined)));
+  // });
+  it('is done', () => {
+    expect(gen.next().value).toBeUndefined();
+    expect(gen.next().done).toBeTruthy();
   });
 });
