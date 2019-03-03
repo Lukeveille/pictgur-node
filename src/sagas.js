@@ -5,7 +5,6 @@ import { sectionSelect, sortSelect } from './selectors';
 import { apiSuccess, apiFailure } from './actions';
 
 export function fetchGallery(fetch) {
-  console.log('fetched')
   const header = {
     Accept: 'application/json',
     Authorization: 'Bearer ' + process.env.REACT_APP_IMGUR_ACCESS_TOKEN

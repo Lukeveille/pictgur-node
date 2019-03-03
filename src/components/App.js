@@ -4,7 +4,7 @@ import Gallery from './Gallery'
 import DisplaySettings from './DisplaySettings'
 import { apiRequest } from '../actions';
 
-class App extends React.Component {
+export class App extends React.Component {
   componentDidMount() {
     this.props.requestGallery()
   }
