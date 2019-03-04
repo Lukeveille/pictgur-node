@@ -15,8 +15,8 @@ export class App extends React.Component {
         <h1>Welcome to Pictgur</h1>
       </div>
       <main className="App-body">
-        <DisplaySettings />
-        <Gallery />
+        <DisplaySettings className="settings" />
+        <Gallery className="gallery" />
       </main>
     </div>
     )

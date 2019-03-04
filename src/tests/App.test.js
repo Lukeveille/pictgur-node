@@ -20,20 +20,33 @@ const setup = () => {
 }
 
 describe('App component', () => {
+  
   it('should render self and subcomponents', () => {
     const { enzymeWrapper } = setup();
-
     const appDiv = enzymeWrapper.find('div').at(0)
     const headerDiv = enzymeWrapper.find('div').at(1)
     const h1 = enzymeWrapper.find('h1');
     const main = enzymeWrapper.find('main');
+    const displaySettings = enzymeWrapper.find('.settings');
+    const gallery = enzymeWrapper.find('.gallery');
 
     expect(appDiv.hasClass('App')).toBeTruthy();
     expect(headerDiv.hasClass('App-header')).toBeTruthy();
     expect(h1.text()).toBe('Welcome to Pictgur');
     expect(main.hasClass('App-body')).toBeTruthy();
-    expect(enzymeWrapper.find('DisplaySettings')).toBeTruthy();
-    expect(enzymeWrapper.find('Gallery')).toBeTruthy();
+    expect(displaySettings.exists()).toBeTruthy();
+    expect(gallery.exists()).toBeTruthy();
+  });
+  it('fire requestGallery in componentDidMount', () => {
+    const props = { requestGallery: jest.fn };
+    const wrapper = shallow(<App {...props}/>);
+    // wrapper = shallow(<App {...props}/>);
+
+    const spying = jest.spyOn(App.prototype, 'componentDidMount');
+    console.log(App.prototype)
+    // console.log(jest.spyOn(wrapper.prototype, 'componentDidMount'))
+
+    expect(true).toBe(true)
   });
 });
 

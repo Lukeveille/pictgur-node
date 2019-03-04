@@ -4,7 +4,7 @@ import { routerMiddleware } from 'react-router-redux'
 import { reducers } from './reducers'
 import { actionWatcher } from './sagas'
 
-export default function configureStore (history) {
+export default function configureStore(history) {
   const sagaMiddleware = createSagaMiddleware()
   let middleware = applyMiddleware(
     sagaMiddleware,

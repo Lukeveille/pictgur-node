@@ -23,9 +23,9 @@ export function* workerSaga() {
 
     const response = yield call(fetchGallery,{section, sort});
 
-    const data = response.data.data;
+    const payload = response.data.data;
 
-    yield put(apiSuccess(data));
+    yield put(apiSuccess(payload));
 
   } catch (error) {
     yield put(apiFailure(error));

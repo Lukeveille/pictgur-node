@@ -4,16 +4,15 @@ import GalleryPreview from './GalleryPreview';
 import Eclipse from '../images/eclipse-loader.svg';
 import SVG from 'react-inlinesvg'
 
-let Gallery = ({ data, fetching, error }) => (
+export let Gallery = ({ data, fetching, error }) => (
   <div className='image-feed'>
-    {fetching? <h3><SVG src={Eclipse} /></h3> : error? <h3>{error.message}</h3> : data.map((gallery) => {
-      return (
+    {fetching? <h3><SVG src={Eclipse} /></h3> : error? <h3>{error.message}</h3> : data.map((gallery) => (
         <GalleryPreview 
           key={gallery.id}
           gallery={gallery? gallery : null}
         />
       )
-    })}
+    )}
   </div>
 )
 
