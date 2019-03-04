@@ -33,12 +33,12 @@ describe('actions', () => {
     expect(actions.apiRequest()).toEqual(expectedAction);
   });
   it('should create an action to return the result of an API call', () => {
-    const data = [];
+    const payload = [];
     const expectedAction = {
       type: type.API_CALL_SUCCESS,
-      data
+      payload
     };
-    expect(actions.apiSuccess(data)).toEqual(expectedAction);
+    expect(actions.apiSuccess(payload)).toEqual(expectedAction);
   });
   it('should create an action to return an error when an API call fails', () => {
     const error = { message: 'error' };

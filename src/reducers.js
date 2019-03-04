@@ -14,7 +14,7 @@ export const reducers = (state = initialState, action) => {
     case type.API_CALL_REQUEST:
       return { ...state, fetching: true, error: null };
     case type.API_CALL_SUCCESS:
-      return { ...state, fetching: false, data: action.data };
+      return { ...state, fetching: false, data: action.payload };
     case type.API_CALL_FAILURE:
       return { ...state, fetching: false, data: null, error: action.error };
     case type.SET_SECTION:

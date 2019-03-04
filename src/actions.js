@@ -15,9 +15,9 @@ export const setSort = sort => ({
 export const apiRequest = () => ({
   type: action.API_CALL_REQUEST
 });
-export const apiSuccess = data => ({
+export const apiSuccess = payload => ({
   type: action.API_CALL_SUCCESS,
-  data
+  payload
 });
 export const apiFailure = error => ({
   type: action.API_CALL_FAILURE,

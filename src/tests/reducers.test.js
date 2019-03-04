@@ -17,14 +17,14 @@ describe('All reducers', () => {
   it('should return a successful API call', () => {
     expect(reducers(initialState, {
       type: type.API_CALL_SUCCESS,
-      data: 'success'
+      payload: 'success'
     })).toEqual({
       ...initialState,
       fetching: false,
       data: 'success'
     });
   });
-  it('should return an error with no data if an API call fails', () => {
+  it('should return an error and no data if an API call fails', () => {
     expect(reducers(initialState, {
       type: type.API_CALL_FAILURE,
       error: 'error'

@@ -9,18 +9,18 @@ export class App extends React.Component {
     this.props.requestGallery()
   }
   render() {
-  return (
-  <div className="App">
-    <div className="App-header">
-      <h1>Welcome to Pictgur</h1>
+    return (
+    <div className="App">
+      <div className="App-header">
+        <h1>Welcome to Pictgur</h1>
+      </div>
+      <main className="App-body">
+        <DisplaySettings />
+        <Gallery />
+      </main>
     </div>
-    <div className="App-body">
-      <DisplaySettings />
-      <Gallery />
-    </div>
-  </div>
-  )
-};
+    )
+  };
 }
 
 const mapStateToProps = state => (state);
